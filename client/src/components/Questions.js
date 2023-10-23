@@ -1,4 +1,5 @@
-// import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
+// , useState
 import data from '../database/data';
 
 const Questions = () => {
@@ -7,14 +8,14 @@ const Questions = () => {
 
 
     const question = data[0]
-    // useEffect(() => {
-    //     console.log(question);
-    // }, [])
+    useEffect(() => {
+        // console.log(question);
+    }, [])
 
 
     function onSelect() {
         // setChecked(false)
-        console.log("button changed");
+        // console.log("button changed");
     }
     return (
         <div className='questions'>
