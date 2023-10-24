@@ -1,27 +1,33 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 // redux store import
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 // custom hooks
 import { useFetchQuestions } from '../hooks/FetchQuestions';
+import { updateResult } from '../hooks/setResult';
 
 const Questions = ({ onChecked }) => {
 
-    // const [checked, setChecked] = useState(undefined)
+    const [checked, setChecked] = useState(undefined)
+    const { trace } = useSelector(state => state.questions)
+    const result = useSelector(state => state.result.result)
+
     const [{ isLoading, apiData, serverError }] = useFetchQuestions()
 
     const questions = useSelector(state => state.questions.queue[state.questions.trace])
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        // console.log(questions);
-    })
+        // console.log({ trace, checked });
+        dispatch(updateResult({ trace, checked }))
+    }, [checked])
 
     function onSelect(i) {
         // console.log(i);
         onChecked(i)
-        // setChecked(false)
-        // console.log("button changed");
+        setChecked(i)
+        dispatch(updateResult({ trace, checked }))
     }
 
     if (isLoading) return <h3 className='text-light'>isLoading </h3>
@@ -38,12 +44,12 @@ const Questions = ({ onChecked }) => {
                                 onChange={() => onSelect(i)} />
 
                             <label htmlFor={`q ${i}- option`} className='text-primary'>{q}</label>
-                            <div className="check"></div>
+                            <div className={`check ${result[trace] == i ? 'checked' : ''}`}></div>
                         </li>
                     ))
                 }
             </ul>
-        </div>
+        </div >
     )
 }
 
