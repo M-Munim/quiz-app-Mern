@@ -6,19 +6,25 @@ import express from 'express';
 import morgan from 'morgan' // when ever i make req on server i want that req msg in my console
 import cors from 'cors' // for cross domain data sharing 
 import { config } from "dotenv"; // during deployment we can easily specify port using  envoirment variable
+import router from './router/route.js';
+
+// importing connection file
+// import connect from './database/conn.js';
 
 const app = express()
 
 // app middlewares
-app.use(morgan("tiny"));
+app.use(morgan('tiny'));
 app.use(cors());
-app.use(express.json) // imforming express we are using json format
+app.use(express.json()) // imforming express we are using json format
 config(); // will initialize this app with .env
 
 // application port 
 const port = process.env.PORT || 8000;
 
 // routes
+app.use('/api', router) //Apis
+
 app.get('/', (req, res) => {
     try {
         res.json("Get Request")
