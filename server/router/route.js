@@ -16,7 +16,7 @@ router.route('/questions')
 // Questions route Api
 router.route('/result')
     .get(controller.getResult)
-    .post(controller.insertResult)
+    .post(controller.storeResult)
     .delete(controller.dropResult)
 
 export default router;

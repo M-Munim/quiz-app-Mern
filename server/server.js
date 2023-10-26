@@ -9,7 +9,7 @@ import { config } from "dotenv"; // during deployment we can easily specify port
 import router from './router/route.js';
 
 // importing connection file
-// import connect from './database/conn.js';
+import connect from './database/connection.js';
 
 const app = express()
 
@@ -22,6 +22,9 @@ config(); // will initialize this app with .env
 // application port 
 const port = process.env.PORT || 8000;
 
+//db connection 
+// connect(); >db only connect if we have valid connection then (line 45)
+
 // routes
 app.use('/api', router) //Apis
 
@@ -33,14 +36,23 @@ app.get('/', (req, res) => {
     }
 })
 
-app.listen(port, () => {
-    console.log(`Server Connected to http://localhost:${port}`);
+
+
+
+
+// start server only when we have valid connection then access backend
+
+connect().then(() => {
+    try {
+        app.listen(port, () => {
+            console.log(`Server Connected to http://localhost:${port}`);
+        })
+    } catch (error) {
+        console.log(`Cannot connect to server due to ${error} `);
+    }
+}).catch(error => {
+    console.log("Invalid Database Connection");
 })
-
-
-
-
-
 
 
 

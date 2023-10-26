@@ -1,29 +1,73 @@
+import Questions from '../models/questionSchema.js'
+import Results from '../models/resultSchema.js'
+import questions, { answers } from '../database/data.js'
+
 // get all questions
 export async function getQuestions(req, res) {
-    res.json("Questions api get req")
+    try {
+        const q = await Questions.find();
+        res.json(q)
+    } catch (error) {
+        res.json({ error })
+    }
 }
 
-// insert all questions
 export async function insertQuestions(req, res) {
-    res.json("Questions api post req")
+    try {
+        // Assuming questions and answers are defined somewhere in your code
+        const data = await Questions.insertMany({ questions, answers });
+        res.json({ msg: "Data Saved Successfully...!", data });
+    } catch (error) {
+        res.json({ error: error.message });
+    }
 }
 
 // delete all questions
 export async function dropQuestions(req, res) {
-    res.json("Questions api delete req")
+    try {
+        await Questions.deleteMany();
+        res.json({ msg: "Deleted Successfully :)" })
+    } catch (error) {
+        res.json({ error })
+    }
 }
+
+// RESULT:
+
+
 
 // get all Result
 export async function getResult(req, res) {
-    res.json("Result api get req")
+    try {
+        const r = await Results.find();
+        res.json(r)
+    } catch (error) {
+        res.json({ error })
+    }
 }
 
-// insert all questions
-export async function insertResult(req, res) {
-    res.json("Result api post req")
+/** post all result */
+export async function storeResult(req, res) {
+    try {
+        const { username, result, attempts, points, achieved } = req.body;
+        if (!username || !result) {
+            throw new Error('Data Not Provided...!');
+        }
+
+        const data = await Results.create({ username, result, attempts, points, achieved });
+
+        res.json({ msg: "Result Saved Successfully...!", data });
+    } catch (error) {
+        res.json({ error: error.message });
+    }
 }
 
 // delete all questions
 export async function dropResult(req, res) {
-    res.json("Result api delete req")
+    try {
+        await Results.deleteMany();
+        res.json({ msg: "Result Deleted " })
+    } catch (error) {
+        res.json({ error })
+    }
 }

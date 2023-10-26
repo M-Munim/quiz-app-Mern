@@ -1,6 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice } from "@reduxjs/toolkit";
 
-// create reducer
+/** create reducer */
 export const questionReducer = createSlice({
     name: 'questions',
     initialState: {
@@ -13,7 +13,8 @@ export const questionReducer = createSlice({
             let { question, answers } = action.payload
             return {
                 ...state,
-                queue: question, answers
+                queue: question,
+                answers
             }
         },
         moveNextAction: (state) => {
@@ -40,4 +41,4 @@ export const questionReducer = createSlice({
 
 export const { startExamAction, moveNextAction, movePrevAction, resetAllAction } = questionReducer.actions;
 
-export default questionReducer.reducer
+export default questionReducer.reducer;

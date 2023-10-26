@@ -26,6 +26,6 @@ export const resultReducer = createSlice({
     }
 })
 
-export const { setUserId, pushResultAction, resetResultAction,updateResultAction } = resultReducer.actions;
+export const { setUserId, pushResultAction, resetResultAction, updateResultAction } = resultReducer.actions;
 
 export default resultReducer.reducer;
