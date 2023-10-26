@@ -51,13 +51,13 @@ export default function Quiz() {
 
   return (
     <div className='container'>
-        <h1 className='title text-light'>Quiz Application</h1>
+        <h1 className='title text-light'>Your Daily Quiz Web App</h1>
 
         {/* display questions */}
         <Questions onChecked={onChecked} />
 
         <div className='grid'>
-            { trace > 0 ? <button className='btn prev' onClick={onPrev}>Prev</button> : <div></div>}
+            { trace > 0 ? <button className='btn prev color-dark' onClick={onPrev}>Prev</button> : <div></div>}
             <button className='btn next' onClick={onNext}>Next</button>
         </div>
     </div>

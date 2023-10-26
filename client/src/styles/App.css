@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 :root{
-  --primary-color: #0DFF92;
+  --primary-color: purple;
   --dark-color:#222222;
   --light-color: #f0f0f0;
 }
@@ -27,7 +27,7 @@ body, html{
 .container .title{
     font-size: 3em;
     text-align: center;
-    border: 5px solid var(--primary-color);
+    border-bottom: 5px dashed var(--primary-color);
     padding: .3em .2em;
     border-radius: 4px;
 }
@@ -67,6 +67,7 @@ body, html{
     border: none;
     border-radius: .1em;
     font-size: 1.2em;
+    color: #fff;
 }
 
 .container .btn:hover{
@@ -169,4 +170,8 @@ input[type=radio]:checked ~ .text-primary{
 
 .checked::before{
   background: var(--primary-color)
+}
+
+.color-dark{
+  color: #000 !important;
 }

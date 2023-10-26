@@ -10,13 +10,13 @@
 }
 
 .start .btn{
-    padding: .2em 1.7em;
+    padding: .2em 1.2em;
     border: none;
-    border-radius: .1em;
+    border-radius: .4em;
     font-size: 1.2em;
-    color: #202020;
+    color: #fff;
     text-decoration: none;
-    background-color: #faff5a;
+    background-color: #ff1c1c;
 }
 
 #form{
